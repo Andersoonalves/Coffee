@@ -53,5 +53,16 @@ public class MachineTest {
 		int[] num = machine.unloadCoins();
 		verifyCoins(num, 0, 9, 9, 7, 5, 0);
 	}
+	
+	@Test
+	public void insertCoinsAndSelectCoffeeWithoutChange() {
+		machine.insertCoin(Coin.quarter);
+		machine.insertCoin(Coin.dime);
+		
+		int[] change = machine.select(Drink.BLACK);
+		verifyCoins(change, 0, 0, 0, 0, 0, 0);
+		int[] num = machine.unloadCoins();
+		verifyCoins(num, 0, 0, 1, 1, 0, 0);
+	}
 
 }
