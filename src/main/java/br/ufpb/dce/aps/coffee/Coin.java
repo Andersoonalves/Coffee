@@ -12,4 +12,8 @@ enum Coin {
 	public int getValue() {
 		return value;
 	}
+	
+	public static Coin[] reverse() {
+		return new Coin[] {dollar, halfDollar, quarter, dime, nickel, penny };
+	}
 }

@@ -40,5 +40,18 @@ public class MachineTest {
 		Assert.assertEquals(numHalfDollar, num[4]);
 		Assert.assertEquals(numDollar, num[5]);
 	}
+	
+	@Test
+	public void insertCoinsAndSelectCoffee() {
+		machine.loadCoins(0, 10, 10, 5, 5, 0);
+		machine.insertCoin(Coin.quarter);
+		machine.insertCoin(Coin.quarter);
+		
+		int[] change = machine.select(Drink.BLACK);
+		verifyCoins(change, 0, 1, 1, 0, 0, 0);
+		
+		int[] num = machine.unloadCoins();
+		verifyCoins(num, 0, 9, 9, 7, 5, 0);
+	}
 
 }
