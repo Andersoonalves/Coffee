@@ -18,6 +18,30 @@ public class Machine {
 	public int[] unloadCoins() {
 		return coins;
 	}
+
+	public void insertCoin(Coin coin) {
+		switch (coin) {
+		case penny:
+			coins[0]++;
+			break;
+		case nickel:
+			coins[1]++;
+			break;
+		case dime:
+			coins[2]++;
+			break;
+		case quarter:
+			coins[3]++;
+			break;
+		case halfDollar:
+			coins[4]++;
+			break;
+		case dollar:
+			coins[5]++;
+			break;
+		}
+	}
+	
 	
 
 }
