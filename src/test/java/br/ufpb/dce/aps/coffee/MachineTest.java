@@ -64,5 +64,16 @@ public class MachineTest {
 		int[] num = machine.unloadCoins();
 		verifyCoins(num, 0, 0, 1, 1, 0, 0);
 	}
-
+	
+	@Test
+	public void insertCoinsAndCancel(){
+		machine.loadCoins(0, 10, 10, 5, 5, 0);
+		machine.insertCoin(Coin.quarter);
+		machine.insertCoin(Coin.dime);
+		int[] cancel = machine.cancelRequest();
+		verifyCoins(cancel, 0, 0, 1, 1, 0, 0);
+		int[] num = machine.unloadCoins();
+		verifyCoins(num, 0, 10, 10, 5, 5, 0);
+	}
+	
 }

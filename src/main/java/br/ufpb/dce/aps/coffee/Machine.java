@@ -1,8 +1,9 @@
 package br.ufpb.dce.aps.coffee;
 
 public class Machine {
-
-	private int[] coins = new int[6];
+	
+	private int amountCoins = Coin.values().length;
+	private int[] coins = new int[amountCoins];
 	private int current;
 
 	public void loadCoins(int numPenny, int numNickel, int numDime,
@@ -32,11 +33,10 @@ public class Machine {
 	}
 
 	public int[] select(Drink drink) {
-
-		int[] arrayChange = new int[6];
+		int[] arrayChange = new int[amountCoins];
 		int change = current - 35;
 
-		int i = 5;
+		int i = amountCoins - 1;
 		for (Coin c : Coin.reverse()) {
 			while (change >= c.getValue() && coins[i] > 0) {
 				change -= c.getValue();
@@ -45,7 +45,7 @@ public class Machine {
 			}
 			i--;
 		}
-		
+
 		if (change > 0) {
 			loadCoins(arrayChange[0], arrayChange[1], arrayChange[2],
 					arrayChange[3], arrayChange[4], arrayChange[5]);
@@ -54,5 +54,22 @@ public class Machine {
 
 		return arrayChange;
 	}
+
+	public int[] cancelRequest() {
+		int[] arrayCancel = new int[amountCoins];
+		int i = amountCoins - 1;
+		for (Coin c : Coin.reverse()) {
+			while (current >= c.getValue() && coins[i] > 0) {
+				current -= c.getValue();
+				coins[i]--;
+				arrayCancel[i]++;
+			}
+			i--;
+		}
+		
+		return arrayCancel;
+	}
+
+
 
 }
