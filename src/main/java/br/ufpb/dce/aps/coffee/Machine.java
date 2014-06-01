@@ -33,6 +33,10 @@ public class Machine {
 	}
 
 	public int[] select(Drink drink) {
+		if (current < 35) {
+			throw new RuntimeException("Please insert coins");
+		}
+		
 		int[] arrayChange = new int[amountCoins];
 		int change = current - 35;
 

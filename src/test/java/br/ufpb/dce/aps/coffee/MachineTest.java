@@ -76,4 +76,11 @@ public class MachineTest {
 		verifyCoins(num, 0, 10, 10, 5, 5, 0);
 	}
 	
+
+	@Test(expected=RuntimeException.class)
+	public void donotInsertCoinsAndSelectCoffee(){
+		machine.select(Drink.BLACK);
+	}
+	
+
 }
